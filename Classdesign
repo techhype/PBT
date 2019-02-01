@@ -1,0 +1,25 @@
+class Bank
+{
+string bank_name;
+string branch;
+string ifsc;
+string branch_addr;
+Bank();//constructor definition
+}
+class Customer extends Bank
+{
+string name;
+string address;
+string aadhar_no;
+string ph_no;
+float balance;
+}
+class Account extends Customer
+{
+string ac_no;
+string ac_type;
+int interest;
+public void create_ac();
+public void edit_acdetails();
+public void delete_ac();
+}
