@@ -8,18 +8,58 @@ Bank();//constructor definition
 }
 class Customer extends Bank
 {
-string name;
+string fname;
+string lname;
+string email;
+date dob;
+string pan_no;
 string address;
 string aadhar_no;
 string ph_no;
-float balance;
+int age;
+public void get_custdet();
+public void edit_custdet();
 }
 class Account extends Customer
 {
 string ac_no;
 string ac_type;
 int interest;
+float balance;
 public void create_ac();
-public void edit_acdetails();
+public void edit_acdet();
 public void delete_ac();
+}
+class Transaction extends Account
+{
+int transid;
+datetime trans_date;
+public void deposit();
+public void withdraw();
+public void bal_enquiry();
+public void money_transfer();
+public void record_trans();
+public void get_trans();
+}
+class Card extends Account
+{
+string card_no;
+date valid_from;
+date valid_till;
+int cvv;
+string card_type;
+public void create_card();
+public void activate();
+public void deactivate();
+}
+class Loan extends Customer
+{
+string loan_no;
+string loan_type;
+int terms;
+string loan_reason;
+int loan_interest;
+public void loan_validate();
+public void loan_acpt();
+public void loan_reject();
 }
