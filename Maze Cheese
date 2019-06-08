@@ -1,0 +1,75 @@
+#include<stdio.h>
+
+#define VISITED 1
+#define NOT_VISITED 0
+#define isValid(x) (x >=0 && x < size)
+
+int size;
+
+int visited[10][10];
+
+int isVisited(int row, int col)
+{
+    return visited[row][col];
+}
+
+int isPath(int maze[10][10], int row, int col )
+{
+   static int cheese_found=0;
+    // left
+    int r, c;
+    if(maze[row][col] == 9)
+    {
+      cheese_found = 1;
+      return cheese_found;
+    }
+    r=row;
+    c= col -1;
+    if(isValid(r) && isValid(c) && maze[r][c]!=0 && isVisited(r,c) !=1 && cheese_found==0)
+    {
+        visited[row][col] = VISITED;
+        isPath(maze, r,c);
+        visited[r][c] = NOT_VISITED;
+    }
+    // up
+    r=row - 1;
+    c= col ;
+    if(isValid(r) && isValid(c) && maze[r][c]!=0 && isVisited(r,c) !=1&& cheese_found==0)
+    {
+        visited[row][col] = VISITED;
+        isPath(maze, r,c);
+        visited[r][c] = NOT_VISITED;
+    }
+    // right
+    r=row;
+    c= col +1 ;
+    if(isValid(r) && isValid(c) && maze[r][c]!=0 && isVisited(r,c) !=1&& cheese_found==0)
+    {
+        visited[row][col] = VISITED;
+        isPath(maze, r,c);
+        visited[r][c] = NOT_VISITED;
+    }
+    //down
+    r=row  + 1;
+    c= col ;
+    if(isValid(r) && isValid(c) && maze[r][c]!=0 && isVisited(r,c) !=1&& cheese_found==0)
+    {
+        visited[row][col] = VISITED;
+        isPath(maze, r,c);
+        visited[r][c] = NOT_VISITED;
+    }
+    return cheese_found;
+}
+
+int main()
+{
+    int maze[10][10] ,row,col;
+    scanf("%d",&size);
+    for( row= 0  ;row < size; row++)
+    {
+        for(col = 0 ; col  <size ;col++)
+        scanf("%d",&maze[row][col]);
+    }
+    printf("%d",isPath(maze, 0,0));
+    return 0;
+}
